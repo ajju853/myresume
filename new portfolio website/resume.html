@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajim Patel - MERN Developer Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #2c3e50;
+            --accent-color: #ff4081;
+            --text-color: #ffffff;
+            --bg-color: #0a192f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+
+        #scene-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            padding-top: 100px;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        p,
+        ul {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .message-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(10, 25, 47, 0.8);
+            margin-top: 20px;
+        }
+
+        .footer-images img {
+            width: 100px;
+            margin: 5px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .footer-images img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 5px;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+
+        .popup {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1000;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Black w/ opacity */
+        }
+
+        .popup-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+            max-width: 500px;
+            /* Max width */
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body></body>
+<!-- Popup for the image -->
+<div id="image-popup" class="popup">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <img class="popup-content" id="popup-img" src="aj.jpeg" alt="Popup Image">
+</div>
+
+<div class="content">
+    <!-- ... existing content ... -->
+</div>
+
+<script>
+    // Show the popup when the page loads
+    window.onload = function () {
+        document.getElementById('image-popup').style.display = 'block';
+    };
+
+    // Function to close the popup
+    function closePopup() {
+        document.getElementById('image-popup').style.display = 'none';
+    }
+</script>
+</body>
+
+<body>
+    <div id="scene-container"></div>
+    <div class="content">
+        <header>
+            <h1>Ajim Patel</h1>
+            <nav>
+                <a href="#about">💼 About</a>
+                <a href="#contact">📞 Contact</a>
+                <a href="#summary">📝 Summary</a>
+                <a href="#skills">💡 Skills</a>
+                <a href="#education">🎓 Education</a>
+                <a href="#experience">💼 Experience</a>
+                <a href="#projects">🚀 Projects</a>
+                <a href="#certifications">📜 Certifications</a>
+                <a href="#achievements">🏆 Achievements</a>
+                <a href="#soft-skills">🧠 Soft Skills</a>
+
+            </nav>
+
+        </header>
+        <main>
+            <section id="about">
+                <h2>About Me</h2>
+                <p>💻⚡ Aspiring Full Stack Developer | JavaScript & Java Enthusiast | DevOps Advocate | Cloud Computing
+                    Buff | Data Structures & Algorithms Aficionado 🇮🇳 | Passionate about Driving Tech Innovation 💻⚡
+                </p>
+            </section>
+            <section id="contact">
+                <h2>Let's Connect!</h2>
+                <div class="contact-info">
+                    <p><strong>📞 Phone:</strong> 9325480476</p>
+                    <p><strong>📧 Email:</strong> <a href="mailto:ajimp340@gmail.com">ajimp340@gmail.com</a></p>
+                    <p><strong>🔗 LinkedIn:</strong> <a href="https://www.linkedin.com/in/ajim-patel-b359192ab"
+                            target="_blank">Explore
+                            my LinkedIn</a></p>
+                    <p><strong>📍 Location:</strong> Solapur, India</p>
+                    <p><strong>💻 LeetCode:</strong> <a href="https://leetcode.com/u/ajju52/" target="_blank">Check out
+                            my LeetCode
+                            challenges</a></p>
+                    <p><strong>💼 GitHub:</strong> <a href="https://github.com/ajju853" target="_blank">Visit my
+                            GitHub</a></p>
+                    <p><strong>📸 Instagram:</strong> <a href="https://www.instagram.com/__ajju___p/"
+                            target="_blank">Follow me on
+                            Instagram</a></p>
+                </div>
+
+            </section>
+
+            <section id="summary">
+                <h2>Professional Summary</h2>
+                <p>🚀 Passionate and results-driven <strong>Full-Stack Developer</strong> with proven experience in web
+                    development,
+                    AI, and data analytics. Skilled in:</p>
+                <ul>
+                    <li>⚛️ <strong>React.js</strong></li>
+                    <li>🔧 <strong>Node.js</strong></li>
+                    <li>☁️ <strong>AWS</strong></li>
+                    <li>📦 <strong>Kubernetes</strong></li>
+                    <li>💻 <strong>Java</strong></li>
+                    <li>🐍 <strong>Python</strong></li>
+                    <li>📊 <strong>SQL</strong></li>
+                </ul>
+                <p>Adept at building user-friendly applications and optimizing workflows for greater efficiency.
+                    Demonstrated
+                    technical and analytical skills through impactful technical projects for global brands like:</p>
+                <ul>
+                    <li>💼 Accenture</li>
+                    <li>🏢 Tata</li>
+                    <li>🛒 Walmart</li>
+                    <li>💳 Mastercard</li>
+                </ul>
+                <p>Currently pursuing a BCA degree with expertise in full-stack development and data analysis. Excited
+                    to contribute
+                    to the <strong>Infosys InStep Internship</strong> with technical, analytical, and problem-solving
+                    abilities.</p>
+            </section>
+
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <ul>
+                    <li><strong>🖥️ Programming Power:</strong> Java, Python, JavaScript, HTML, CSS — the classics that
+                        never go out of
+                        style.</li>
+                    <li><strong>🚀 Frameworks & Libraries:</strong> React.js, Node.js, Express.js — building dynamic,
+                        fast, and
+                        interactive web apps.</li>
+                    <li><strong>🌐 Full-Stack Wizardry:</strong> From responsive UI to rock-solid backends, including
+                        API development
+                        for seamless data flow.</li>
+                    <li><strong>⚙️ DevOps in Action:</strong> Master of Docker, Kubernetes, Jenkins, and GitHub Actions
+                        for smooth CI/CD
+                        pipelines.</li>
+                    <li><strong>☁️ Cloud Dominance:</strong> Hands-on experience with AWS (EC2, S3, Lambda) and Azure —
+                        the engines of
+                        the modern web.</li>
+                    <li><strong>📊 Data Analytics & AI:</strong> TensorFlow, Power BI, Data Visualization, and
+                        Statistical Analysis —
+                        from raw data to smart insights.</li>
+                    <li><strong>🛠️ Essential Tech Arsenal:</strong> SQL, Relational Databases, Git, JIRA, and the
+                        all-important DSA
+                        (Data Structures & Algorithms).</li>
+                    <li><strong>🔍 Debugging Detective:</strong> Spotting and squashing bugs with precision, saving
+                        projects from
+                        last-minute chaos.</li>
+                    <li><strong>📈 Continuous Learner:</strong> Always staying ahead with the latest in web3,
+                        blockchain, and emerging
+                        technologies.</li>
+                    <li><strong>🤖 Automation & Scripting:</strong> Automating tasks with Python, Bash, and PowerShell —
+                        more
+                        efficiency, less repetition.</li>
+                </ul>
+
+            </section>
+            <section id="education">
+                <h2>🎓 Education</h2>
+                <div class="education-info">
+                    <p><strong>Bachelor of Computer Applications (BCA)</strong></p>
+                    <p><em>Punyashlok Ahilyadevi Holkar Solapur University, Solapur</em></p>
+                    <p><strong>Duration:</strong> March 2022 - April 2025</p>
+                    <p><strong>Relevant Coursework:</strong></p>
+                    <ul>
+                        <li>Data Structures</li>
+                        <li>Software Engineering</li>
+                        <li>Database Management Systems</li>
+                        <li>Cloud Computing</li>
+                        <li>Machine Learning</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>💼 Professional Experience</h2>
+
+                <h3>🌐 Job Simulations & Virtual Experience Programs</h3>
+
+                <p><strong>⚡ Accenture – Data Analytics & Visualization</strong> <br> 📅 November 2024</p>
+                <ul>
+                    <li>🔍 Transformed 7+ raw datasets into crystal-clear insights, driving smarter business decisions.
+                    </li>
+                    <li>📊 Built interactive Power BI dashboards, making stakeholder reports **look like magic.**</li>
+                    <li>🚀 Boosted analysis speed by 20% through next-level data cleaning and validation methods.</li>
+                </ul>
+
+                <p><strong>🌱 Tata Consultancy Services (TCS) – ESG Consulting</strong> <br> 📅 November 2024</p>
+                <ul>
+                    <li>🌍 Conducted ESG impact analysis, crafting sustainability-driven strategies for better corporate
+                        responsibility.</li>
+                    <li>📈 Benchmarked 5+ competitors, designing a fitment matrix to guide client decisions with
+                        **precision and
+                        clarity.**</li>
+                    <li>💡 Proposed 3 sustainable business models that aligned ESG goals with business growth
+                        opportunities.</li>
+                </ul>
+
+                <p><strong>🚚 Walmart USA – Advanced Software Engineering</strong> <br> 📅 November 2024</p>
+                <ul>
+                    <li>🧮 Engineered a custom heap data structure in Java, powering **smarter resource allocation** for
+                        Walmart's
+                        shipping system.</li>
+                    <li>📐 Designed UML Class Diagrams & ERDs, bringing clarity to Walmart’s pet department database
+                        redesign.</li>
+                    <li>⚡ Supercharged data efficiency by 25% with optimized structures and blazing-fast query
+                        performance.</li>
+                </ul>
+
+                <p><strong>💳 Mastercard – Advisors & Consulting Services</strong> <br> 📅 November 2024</p>
+                <ul>
+                    <li>📊 Turned massive datasets into business gold, fueling 5+ data-driven marketing strategies for
+                        top-tier
+                        clients.</li>
+                    <li>📈 Used statistical magic to boost ROI by 10%, transforming insights into action for
+                        Mastercard's clients.
+                    </li>
+                    <li>🛠️ Built a custom reporting framework, giving stakeholders the **clarity they craved** for
+                        faster
+                        decisions.</li>
+                </ul>
+            </section>
+
+            <section id="projects">
+                <h2>🚀 Projects</h2>
+
+                <ul>
+                    <li><strong>📚 EduSync Pro – Student Management System:</strong>
+                        Crafted a sleek, web-based platform to track student progress and goals, making life easier for
+                        students and
+                        educators alike.
+                    </li>
+
+                    <li><strong>💸 FinanceFlow Pro – Personal Finance Tracker:</strong>
+                        Built an **interactive finance app** to track, analyze, and categorize daily expenses, putting
+                        users in
+                        control of their money.
+                    </li>
+
+                    <li><strong>📈 Crypto-WebApp – Real-Time Cryptocurrency Tracker:</strong>
+                        Developed a **real-time tracker** with live price updates and trend visualization, wrapped in a
+                        visually
+                        stunning UI.
+                    </li>
+
+                    <li><strong>✨ GitHub Galaxy Explorer – Interactive GitHub Profile Explorer:</strong>
+                        Created a **space-themed web app** to visualize GitHub profiles and repositories in a fun,
+                        interactive
+                        format.
+                    </li>
+
+                    <li><strong>🖼️ Image Recognition with TensorFlow.js:</strong>
+                        Trained a custom image recognition model using **TensorFlow.js**, achieving smart object
+                        classification
+                        accuracy.
+                    </li>
+
+                    <li><strong>⚕️ BMI Calculator – Health & Fitness App:</strong>
+                        Built a mobile-friendly BMI calculator with unit conversions and personalized health tips based
+                        on BMI
+                        analysis.
+                    </li>
+                </ul>
+            </section>
+
+            <section id="certifications">
+                <h2>Certifications</h2>
+                <ul>
+                    <li><strong>📊 Career Essentials in Data Analysis</strong> – Microsoft & LinkedIn</li>
+                    <li><strong>🤖 Introduction to Generative AI</strong> – LinkedIn</li>
+                    <li><strong>📈 Data Analytics: Foundations</strong> – LinkedIn</li>
+                    <li><strong>⚖️ Ethics in the Age of Generative AI</strong> – LinkedIn</li>
+                    <li><strong>🧑‍💻 Learning Microsoft 365 Copilot</strong> – LinkedIn</li>
+                    <li><strong>💻 HackerRank REST API (Intermediate) Certificate</strong> – HackerRank</li>
+                    <li><strong>🚀 Software Engineer Intern Certificate</strong> – HackerRank</li>
+                    <li><strong>📊 Data Analytics Essentials</strong> – Cisco</li>
+                    <li><strong>📚 Introduction to Data Science</strong> – Cisco</li>
+                    <li><strong>🖥️ Operating System Fundamentals</strong> – Cisco</li>
+                    <li><strong>💾 SQL Certificate</strong> – HackerRank</li>
+                </ul>
+            </section>
+            <section id="achievements">
+                <h2>🏆Key Achievements</h2>
+                <ul>
+                    <li><strong>📈 Enhanced User Engagement:</strong> **25% boost** in user engagement for **EduSync
+                        Pro** within 3
+                        months by developing goal-tracking features that kept users hooked.</li>
+
+                    <li><strong>⚡ Optimized Deployment Efficiency:</strong> **40% reduction** in DevOps deployment time,
+                        speeding up
+                        project delivery and improving team agility.</li>
+
+                    <li><strong>🚀 Delivered Real-World Projects:</strong> Completed hands-on technical simulations with
+                        **Walmart, TCS,
+                        Accenture, and Mastercard**, showcasing adaptability, problem-solving, and cross-industry
+                        experience.</li>
+
+                    <li><strong>📊 Data Analysis Efficiency:</strong> **20% improvement** in data analysis speed during
+                        **Accenture's
+                        job simulation**, delivering sharp, actionable insights for stakeholders.</li>
+                </ul>
+            </section>
+            <section id="favorite-books">
+                <h2>Favorite Books & Resources</h2>
+                <ul>
+                    <li>📚 <strong>"Clean Code"</strong> by Robert C. Martin</li>
+                    <li>📖 <strong>"You Don't Know JS"</strong> by Kyle Simpson</li>
+                    <li>🌐 <strong>"MDN Web Docs"</strong> - An invaluable web development resource</li>
+                    <li>💸 <strong>"Rich Dad Poor Dad"</strong> - Personal finance wisdom</li>
+                    <li>🧑‍💻 <strong>"The Pragmatic Programmer"</strong> by Andrew Hunt and David Thomas</li>
+                </ul>
+            </section>
+
+            <section id="core-values">
+                <h2>Core Values</h2>
+                <ul>
+                    <li>🔍 <strong>Curiosity:</strong> Always eager to learn and explore new technologies.</li>
+                    <li>🤝 <strong>Collaboration:</strong> Believe in the power of teamwork and shared goals.</li>
+                    <li>🌱 <strong>Growth Mindset:</strong> Embrace challenges as learning opportunities.</li>
+                    <li>🧩 <strong>Problem-Solving:</strong> Passionate about finding creative solutions.</li>
+                </ul>
+            </section>
+
+            <section id="music-playlists">
+                <h2>Music & Playlists</h2>
+                <p>My favorite genres include:</p>
+                <ul>
+                    <li>🎶 Lo-fi Hip Hop</li>
+                    <li>🎧 Chillstep</li>
+                    <li>🎵 Indie Pop</li>
+                </ul>
+                <p>Check out my curated playlists on Spotify!</p>
+            </section>
+
+            <section id="travel-adventures">
+                <h2>Travel & Adventures</h2>
+                <p>I love exploring new places! Here are some of my favorite travel experiences:</p>
+                <ul>
+                    <li>🏞️ Hiking in the Western Ghats</li>
+                    <li>🏖️ Exploring the beaches of Goa</li>
+                    <li>🕌 Cultural trip to Rajasthan</li>
+                </ul>
+            </section>
+
+            <section id="quotes">
+                <h2>Quotes or Life Philosophy</h2>
+                <ul>
+                    <li>💡 <strong>"The only way to do great work is to love what you do." - Steve Jobs</strong></li>
+                    <li>🌱 <strong>"In the middle of every difficulty lies opportunity." - Albert Einstein</strong></li>
+                </ul>
+            </section>
+
+            <section id="learning-goals">
+                <h2>Learning Goals</h2>
+                <ul>
+                    <li>🌐 Become proficient in cloud technologies and DevOps.</li>
+                    <li>💻 Master advanced JavaScript and its frameworks.</li>
+                    <li>📊 Deepen knowledge in data analytics for business applications.</li>
+                    <li>🧠 Pursue an MBA with a focus on technology management.</li>
+                </ul>
+            </section>
+            <section id="fun-facts">
+                <h2>Fun Facts</h2>
+                <ul>
+                    <li>🎮 I’m a huge fan of strategy games and love exploring new virtual worlds.</li>
+                    <li>🛠️ I enjoy building custom mechanical keyboards in my spare time.</li>
+                    <li>🍕 Pizza is my go-to comfort food, especially when brainstorming new ideas!</li>
+                </ul>
+            </section>
+            <section id="languages">
+                <h2>Languages</h2>
+                <ul>
+                    <li>🇬🇧 <strong>English:</strong> Native proficiency.</li>
+                    <li>🇮🇳 <strong>Hindi:</strong> Fluent in both written and spoken Hindi.</li>
+                    <li>🇮🇳 <strong>Marathi:</strong> Fluent in both written and spoken Marathi.</li>
+
+                </ul>
+            </section>
+            <section id="tech-tools">
+                <h2>Tech Tools I Love</h2>
+                <ul>
+                    <li>🖥️ <strong>VS Code:</strong> My go-to editor for development.</li>
+                    <li>📂 <strong>Git:</strong> Essential for version control and collaboration.</li>
+                    <li>🌐 <strong>Postman:</strong> For testing APIs and debugging.</li>
+                    <li>🛠️ <strong>Docker:</strong> Creating isolated environments for efficient development.</li>
+                    <li>📊 <strong>Tableau:</strong> Data visualization to make complex data understandable.</li>
+                    <li>☸️ <strong>Kubernetes:</strong> Container orchestration for deploying and scaling applications.
+                    </li>
+                    <li>🌍 <strong>Terraform:</strong> Infrastructure as code for automating cloud infrastructure.</li>
+                    <li>⚙️ <strong>Jenkins:</strong> Continuous integration and delivery for automating build and
+                        deployment processes.
+                    </li>
+                    <li>☁️ <strong>AWS:</strong> Cloud computing services for scalable and reliable infrastructure.</li>
+                    <li>⚙️ <strong>Ansible:</strong> Automation tool for configuration management and application
+                        deployment.</li>
+                    <li>🛠️ <strong>Puppet:</strong> IT automation for managing infrastructure and software deployment.
+                    </li>
+                </ul>
+
+            </section>
+
+            <section id="soft-skills">
+                <h2>🧠 Soft Skills</h2>
+                <ul>
+                    <li><strong>🛠️ Problem-Solving:</strong> Master at untangling complex technical issues with
+                        creative, effective
+                        solutions.</li>
+
+                    <li><strong>📊 Analytical Thinking:</strong> Turns complex datasets into clear, actionable insights
+                        to fuel smart
+                        decisions.</li>
+
+                    <li><strong>🗣️ Communication:</strong> Translates technical jargon into plain, simple language that
+                        **anyone can
+                        understand.**</li>
+
+                    <li><strong>🤝 Team Collaboration:</strong> Thrives in cross-functional teams, driving projects to
+                        success through
+                        collective effort.</li>
+
+                    <li><strong>⏳ Time Management:</strong> Skilled at prioritizing tasks, hitting deadlines, and
+                        keeping project
+                        momentum strong.</li>
+
+                    <li><strong>📚 Technical Documentation:</strong> Writes clear, concise, and well-structured
+                        technical documentation
+                        that’s easy to follow.</li>
+
+                    <li><strong>🔁 Version Control:</strong> Experienced with **Git** and other version control systems
+                        to manage and
+                        track changes to codebases.</li>
+
+                    <li><strong>🐛 Debugging & Troubleshooting:</strong> Pinpoints bugs and **squashes errors fast** in
+                        software,
+                        hardware, and system workflows.</li>
+
+                    <li><strong>💻 Software Development:</strong> Familiar with **SDLC** and agile methodologies,
+                        ensuring seamless
+                        development cycles.</li>
+
+                    <li><strong>📈 Data Analysis:</strong> Analyzes, visualizes, and interprets data with tools like
+                        **Excel, SQL, and
+                        Python.**</li>
+
+                    <li><strong>☁️ Cloud Technologies:</strong> Skilled in **AWS, Azure, and Google Cloud** for
+                        cloud-native development
+                        and deployment.</li>
+
+                    <li><strong>🤖 Automation & Scripting:</strong> Experienced in scripting with **Python, Bash, and
+                        PowerShell** to
+                        automate repetitive tasks and processes.</li>
+                </ul>
+            </section>
+            <section id="message">
+                <h2>Message</h2>
+                <div class="message-section">
+                    <p>💬 **Got Questions or Opportunities?**
+                        I’m always excited to connect with like-minded professionals and explore fresh challenges.
+                        Whether it’s a quick chat, a new role, or a collaborative project — **let's make it happen!**
+                        Feel free to reach out. I’d love to hear from you!
+                    </p>
+                    <p><strong>Let's connect!</strong></p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-images">
+            <img src="ajjubhairesume-1.png" alt="Resume Image 1">
+            <img src="ajjubhairesume-2.png" alt="Resume Image 2">
+            <img src="ajjubhairesume-3.png" alt="Resume Image 3">
+            <img src="ajjubhairesume-4.png" alt="Resume Image 4">
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        // Three.js scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('scene-container').appendChild(renderer.domElement);
+
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: 0x00bcd4
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Create a cube instead of DNA helix
+        const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+        const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff4081 });
+        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            particlesMesh.rotation.y += 0.001;
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+
+</html>
